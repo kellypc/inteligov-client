@@ -5,16 +5,16 @@ class ProjectsContainer extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			lists: []
+			projects: []
 		}
 	}
 
 	componentDidMount() {
-		axios.get('api/v1/lists.json')
+		axios.get('api/v1/projects.json')
 		.then(response => {
 			console.log(response)
 			this.setState({
-				lists: response.data
+				projects: response.data
 			})
 		})
 		.catch(error => console.log(error))
@@ -24,11 +24,11 @@ class ProjectsContainer extends Component {
 		return (
 			<div className="projects-container">
 			   <h3> Lista de Projetos </h3>
-				{this.state.lists.map( list => {
+				{this.state.projects.map( project => {
 					return (
-						<div className="single-list" key={list.id}>
-							<h4>{list.title}</h4>
-							<p>{list.excerpt}</p>
+						<div className="single-project" key={project.id}>
+							<h4>{project.title}</h4>
+							<p>{project.excerpt}</p>
 						</div>
 					)
 				})}
@@ -36,5 +36,5 @@ class ProjectsContainer extends Component {
 		)
 	}
 }
-		
+
 export default ProjectsContainer;
